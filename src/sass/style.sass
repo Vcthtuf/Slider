@@ -1,0 +1,69 @@
+@import 'base/fonts'
+@import 'base/variables'
+
+// ====  General styles  ====
+
+*
+    font-family: $Roboto
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+
+a
+    text-decoration: none
+
+a:hover, button:hover
+    cursor: pointer
+
+ul
+    list-style-type: none
+    padding: 0
+    margin: 0
+
+body
+    max-width: 1920px
+    width: 100%
+    margin: 0 auto
+
+.container
+    position: relative
+    max-width: 1140px
+    margin: 0 auto
+    @media screen and ( max-width: 1200px ) 
+        padding: 0 15px
+        
+
+.subtitle 
+    font-size: 26px
+    font-weight: bold
+    text-transform: uppercase
+    text-align: center
+
+    @media screen and ( max-width: 768px )
+        font-size: 20px
+
+    @media screen and ( max-width: 576px )
+        font-size: 16px
+
+    @media screen and ( max-width: 480px )
+        font-size: 13px
+        
+    
+
+
+@import 'blocks/promo'
+@import 'blocks/button'
+@import 'blocks/features'
+@import 'blocks/work'
+@import 'blocks/line'
+@import 'blocks/_agent'
+@import 'blocks/prices'
+@import 'blocks/card'
+@import 'blocks/consultation'
+@import 'blocks/managers'
+@import 'blocks/scheme'
+@import 'blocks/reviews'
+@import 'blocks/questions'
+@import 'blocks/footer'
+
+    
