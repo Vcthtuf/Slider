@@ -16,7 +16,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     function showSlides(n) {
 
-        if (n > slides.lenght) {  // если закончились слайды, то переходим к первому
+        if (n > slides.length) {  // если закончились слайды, то переходим к первому
             slideIndex = 1;
         }
 
@@ -44,12 +44,20 @@ window.addEventListener('DOMContentLoaded', () => {
         showSlides(slideIndex = n);
     }
 
-    prev.addEventListener('click', function () {
+    prev.addEventListener('click', function () {  // обработчик кнопки "Назад"
         plusSlides(-1);
-    })
+    });
 
-    next.addEventListener('click', function () {
+    next.addEventListener('click', function () { // обработчик кнопки "Вперед"
         plusSlides(1);
-    })
+    });
+
+    dotsWrap.addEventListener('click', function (event) {  // обработчик нажатия на точки 
+        for (let i = 0; i < dots.length + 1; i++) {
+            if (event.target.classList.contains('dot') && event.target == dots[i - 1]) {
+                currentSlide(i);
+            }
+        }
+    });
 
 })
