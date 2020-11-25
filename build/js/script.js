@@ -54,7 +54,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     dotsWrap.addEventListener('click', function (event) {  // обработчик нажатия на точки 
         for (let i = 0; i < dots.length + 1; i++) {
-            if (event.target.classList.contains('dot') && event.target == dots[i - 1]) {
+            if (event.target.classList.contains('dot') && event.target == dots[i - 1] && event.target.classList.contains('dot_active') == false) {
                 currentSlide(i);
             }
         }
