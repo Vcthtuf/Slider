@@ -2,104 +2,54 @@
 // hamburger
 
 window.addEventListener('DOMContentLoaded', () => {
-    const menu = document.querySelector('.promo__menu'),
-        menuItem = document.querySelectorAll('.promo__item'),
-        hamburger = document.querySelector('.hamburger');
-    console.log(hamburger);
 
-    hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('hamburger_active');
-        menu.classList.toggle('promo__menu_active');
-    });
+    let slideIndex = 1,  // номер текущего слайда
+        slides = document.querySelectorAll('.slider__item'),  // слайды
+        prev = document.querySelector('.button__prev'),  // кнопка назад
+        next = document.querySelector('.button__next'),  // кнопка вперед
+        dotsWrap = document.querySelector('.slider__dots'),  // контейнер для точек
+        dots = document.querySelectorAll('.dot'); // точки
 
-    menuItem.forEach(item => {
-        item.addEventListener('click', () => {
-            hamburger.classList.toggle('hamburger_active');
-            menu.classList.toggle('promo___menu_active');
-        })
-    })
+    showSlides(slideIndex);
 
+    // функция показа одного из слайдов
 
-    //= hamburger
+    function showSlides(n) {
 
-    // slider 
+        if (n > slides.lenght) {  // если закончились слайды, то переходим к первому
+            slideIndex = 1;
+        }
 
-    let track = document.querySelector('.slider__track');
-    let prev = document.querySelector('.slider__button_prev');
-    let next = document.querySelector('.slider__button_next');
-    let trackShift = 0;
-    let screenWidth = document.documentElement.clientWidth;
-    let itemWidth = 600;
+        if (n < 1) {                   // если меньше первого слайда, то переходим к последнему
+            slideIndex = slides.length;
+        }
+
+        slides.forEach((item) => item.style.display = "none");  // убираем показ всех слайдов
+        dots.forEach((item) => item.classList.remove('dot_active')); // убираем активность всех точек
+
+        slides[slideIndex - 1].style.display = 'block'; // показываем один слайд
+        dots[slideIndex - 1].classList.add('dot_active'); // делаем активной одну точку
+
+    }
+
+    // функция перебора слайдов
+
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    // функция показа текущего слайда
+
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
 
     prev.addEventListener('click', function () {
-        screenWidth = document.documentElement.clientWidth;
-        if (screenWidth <= 600 && screenWidth > 500) {
-            itemWidth = 500;
-        } else if (screenWidth <= 500 && screenWidth > 400) {
-            itemWidth = 400;
-        } else if (screenWidth <= 400 && screenWidth > 300) {
-            itemWidth = 280;
-        }
-        track.style.cssText = 'transform: translateX(' + (trackShift + itemWidth) + 'px);';
-        trackShift += itemWidth;
-        console.log(screenWidth);
-        console.log(itemWidth);
-
-        checkButton(itemWidth);
-
-    });
+        plusSlides(-1);
+    })
 
     next.addEventListener('click', function () {
-        screenWidth = document.documentElement.clientWidth;
-        if (screenWidth <= 600 && screenWidth > 500) {
-            itemWidth = 500;
-        } else if (screenWidth <= 500 && screenWidth > 400) {
-            itemWidth = 400;
-        } else if (screenWidth <= 400 && screenWidth > 300) {
-            itemWidth = 280;
-        }
-        track.style.cssText = 'transform: translateX(' + (trackShift - itemWidth) + 'px);';
-        trackShift -= itemWidth;
-
-        console.log(screenWidth);
-        console.log(itemWidth);
-
-
-        checkButton(itemWidth);
-
-    });
-
-    function checkButton() {
-        if (trackShift >= itemWidth) {
-            prev.classList.add("button_passive");
-        } else {
-            prev.classList.remove("button_passive");
-        }
-
-        if (trackShift <= -itemWidth) {
-            next.classList.add("button_passive");
-        } else {
-            next.classList.remove("button_passive");
-        }
-
-
-    }
-
-    function checkScreen() {
-
-        screenWidth = document.documentElement.clientWidth;
-        if (screenWidth <= 600 && screenWidth > 500) {
-            itemWidth = 500;
-        } else if (screenWidth <= 500 && screenWidth > 400) {
-            itemWidth = 400;
-        } else if (screenWidth <= 400 && screenWidth > 300) {
-            itemWidth = 280;
-        }
-        console.log(screenWidth);
-        console.log(itemWidth);
-        return itemWidth;
-    }
-
-    //= slider
+        plusSlides(1);
+    })
 
 })
